@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MomoWatch Settings - Customize fraud detection, alerts, ML models, and data retention.">
+    <title>MomoWatch | Settings</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1a1a2e;
+            --secondary-color: #16213e;
+            --accent-color: #3a5f8a;
+            --highlight-color: #28CC95;
+            --text-color: #f1f1f1;
+            --text-muted: #b8b8b8;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --info-color: #17a2b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-header {
+            background: var(--secondary-color);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .header-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-color), var(--highlight-color));
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 700;
+            box-shadow: 0 3px 15px rgba(40, 204, 149, 0.3);
+        }
+        
+        .header-logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #fff, #e9e9e9);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .main-header nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+
+        .nav-item:hover {
+            color: var(--highlight-color);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-item.active {
+            background: rgba(40, 204, 149, 0.2);
+            color: var(--highlight-color);
+        }
+
+        .nav-item i {
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .settings-container {
+            flex-grow: 1;
+            padding: 2rem 0;
+        }
+
+        .page-title {
+            margin-bottom: 2rem;
+        }
+
+        .page-title h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #fff, #e9e9e9);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-title p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .user-role-display {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--text-color);
+        }
+
+        .user-role-display strong {
+            color: var(--highlight-color);
+        }
+
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .settings-card {
+            background: rgba(22, 33, 62, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .settings-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--highlight-color);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .settings-card h3 i {
+            font-size: 1.8rem;
+        }
+
+        .setting-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .setting-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .setting-item label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+        }
+
+        .setting-item p.description {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Input styles */
+        .setting-item input[type="range"] {
+            width: 100%;
+            appearance: none;
+            -webkit-appearance: none;
+            height: 8px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+            transition: opacity .2s;
+            margin-top: 0.5rem;
+        }
+
+        .setting-item input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--highlight-color);
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(40, 204, 149, 0.5);
+        }
+
+        .setting-item input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--highlight-color);
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(40, 204, 149, 0.5);
+        }
+
+        .threshold-value {
+            display: inline-block;
+            margin-left: 1rem;
+            font-weight: 700;
+            color: var(--highlight-color);
+        }
+
+        .setting-item input[type="number"],
+        .setting-item select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s ease;
+            appearance: none; /* Remove default arrow for select */
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            cursor: pointer;
+        }
+
+        .setting-item input[type="number"]:focus,
+        .setting-item select:focus {
+            border-color: var(--highlight-color);
+        }
+
+        .setting-item select {
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23f1f1f1%22%20d%3D%22M287%2C197.393L146.2%2C56.607L5.4%2C197.393c-7.8%2C7.8-20.5%2C7.8-28.3%2C0c-7.8-7.8-7.8-20.5%2C0-28.3l142.9-142.9c7.8-7.8%2C20.5-7.8%2C28.3%2C0l142.9%2C142.9c7.8%2C7.8%2C7.8%2C20.5%2C0%2C28.3C307.5%2C205.193%2C294.8%2C205.193%2C287%2C197.393z%22%2F%3E%3C%2Fsvg%3E');
+            background-repeat: no-repeat;
+            background-position: right 0.7rem top 50%;
+            background-size: 0.65em auto;
+        }
+
+        /* Toggle Switch */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: var(--text-muted);
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--highlight-color);
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px var(--highlight-color);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+            background-color: white;
+        }
+
+        /* Save Button */
+        .save-settings-button {
+            display: block;
+            width: fit-content;
+            margin: 2rem auto 0;
+            background: linear-gradient(135deg, var(--accent-color), var(--highlight-color));
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(40, 204, 149, 0.4);
+        }
+
+        .save-settings-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(40, 204, 149, 0.6);
+        }
+
+        .main-footer {
+            background: var(--secondary-color);
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .main-header nav {
+                flex-wrap: wrap;
+                gap: 1rem;
+                justify-content: center;
+            }
+            
+            .nav-item {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .page-title h1 {
+                font-size: 2rem;
+            }
+
+            .settings-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .settings-card {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .header-logo-text {
+                font-size: 1.3rem;
+            }
+            
+            .main-header nav {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="header-logo">
+                    <div class="header-logo-icon" style="font-size: 1rem;">MW</div>
+                    <span class="header-logo-text">MomoWatch</span>
+                </div>
+                <nav aria-label="Main Navigation">
+                    <a href="../dashboard.html" class="nav-item">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="../livemonitor.html" class="nav-item">
+                        <i class="fas fa-bolt"></i>
+                        <span>Live Monitor</span>
+                    </a>
+                    <a href="../manualdataentry.html" class="nav-item">
+                        <i class="fas fa-keyboard"></i> <!-- Changed icon to represent manual input -->
+                        <span>Manual Data Entry</span>
+                    </a>
+                    <a href="../transactions.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        <span>Transactions</span>
+                    </a>
+                    <a href="settings.txt" class="nav-item active">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="settings-container">
+        <div class="container">
+            <div class="page-title">
+                <h1>System Settings</h1>
+                <p>Customize fraud detection logic, alert preferences, and data management.</p>
+            </div>
+
+            <!-- User Role Display -->
+            <div class="user-role-display">
+                Your current role: <strong id="userRole"></strong>
+            </div>
+
+            <div class="settings-grid">
+                <!-- Fraud Detection Settings -->
+                <div class="settings-card">
+                    <h3><i class="fas fa-shield-alt"></i> Fraud Detection</h3>
+                    <div class="setting-item">
+                        <label for="fraudThreshold">Fraud Risk Threshold:</label>
+                        <p class="description">Transactions with a risk score above this value will be flagged as potential fraud.</p>
+                        <input type="range" id="fraudThreshold" min="0" max="100" value="60" oninput="updateThresholdValue(this.value)">
+                        <span class="threshold-value" id="thresholdValue">60</span>
+                    </div>
+                    <div class="setting-item">
+                        <label for="mlModel">Machine Learning Model:</label>
+                        <p class="description">Choose the underlying machine learning model for fraud detection.</p>
+                        <select id="mlModel">
+                            <option value="randomForest">Random Forest (Recommended)</option>
+                            <option value="logisticRegression">Logistic Regression</option>
+                            <option value="gradientBoosting">Gradient Boosting</option>
+                            <option value="neuralNetwork">Neural Network</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Alert Preferences -->
+                <div class="settings-card">
+                    <h3><i class="fas fa-bell"></i> Alert Preferences</h3>
+                    <div class="setting-item">
+                        <label>Enable Email Alerts:</label>
+                        <p class="description">Receive email notifications for critical system alerts and high-risk transactions.</p>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="emailAlerts" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <label>Enable In-App Notifications:</label>
+                        <p class="description">Get real-time notifications within the MomoWatch dashboard.</p>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="inAppAlerts" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <label for="alertFrequency">Alert Frequency:</label>
+                        <p class="description">How often to send aggregated alert summaries.</p>
+                        <select id="alertFrequency">
+                            <option value="instant">Instant (Real-time)</option>
+                            <option value="hourly">Hourly</option>
+                            <option value="daily">Daily</option>
+                            <option value="weekly">Weekly</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Data Management -->
+                <div class="settings-card">
+                    <h3><i class="fas fa-database"></i> Data Management</h3>
+                    <div class="setting-item">
+                        <label for="dataRetention">Data Retention Duration:</label>
+                        <p class="description">How long transaction data will be stored before archival or deletion.</p>
+                        <select id="dataRetention">
+                            <option value="3months">3 Months</option>
+                            <option value="6months">6 Months</option>
+                            <option value="1year" selected>1 Year</option>
+                            <option value="3years">3 Years</option>
+                            <option value="5years">5 Years</option>
+                            <option value="indefinite">Indefinite</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <label for="autoArchive">Auto-Archive Old Data:</label>
+                        <p class="description">Automatically move data older than retention period to archive storage.</p>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="autoArchive" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Access Control (Admin Only) -->
+                <div class="settings-card" id="accessControlCard">
+                    <h3><i class="fas fa-user-shield"></i> Access Control</h3>
+                    <p class="description">Manage user roles and permissions. (Admin-only feature)</p>
+                    <div class="setting-item">
+                        <label for="adminAccess">Enable Admin-Only Settings:</label>
+                        <p class="description">Toggle to restrict certain critical settings to administrators only.</p>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="adminAccess" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <label for="userManagement">User Management Portal:</label>
+                        <p class="description">Link to a separate portal for adding/removing users and assigning roles.</p>
+                        <button class="save-settings-button" style="margin: 0; width: 100%; background: var(--accent-color);" onclick="window.location.href='usermanagement.html'">
+                            <i class="fas fa-users-cog"></i> Go to User Management
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <button class="save-settings-button" onclick="saveSettings()">
+                <i class="fas fa-save"></i> Save All Settings
+            </button>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 MomoWatch. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script type="module">
+         import { createClient } from "https://esm.sh/@supabase/supabase-js";
+        // Initialize Supabase client
+        const supabaseUrl = "https://tnebzzkshcoplwlvaxsl.supabase.co" // Replace with your Supabase URL
+        const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRuZWJ6emtzaGNvcGx3bHZheHNsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM5MTU1NTEsImV4cCI6MjA2OTQ5MTU1MX0.EXXMhPRU_MO1gbCdYrjNywrhThkVqbmpRqL4212_gEw" // Replace with your Supabase Anon Key
+         const supabase = createClient(supabaseUrl, supabaseKey);
+
+        // Global variables
+        let currentUser = null;
+        let userRole = ''; // Default role
+ async function initializeAuth() {
+            const { data: { user} } = await supabase.auth.getUser();
+            
+            if (!user) {
+                // Redirect to login page
+                window.location.href = '/signup-login.html';
+                return;
+            }
+            console.log(user)
+            currentUser = user;
+            await loadUserRole();
+            displayUserRole(userRole);
+            toggleAccessControlCard(userRole);
+            
+            // Setup real-time subscriptions
+            setupRealtimeSubscriptions();
+            
+            // Request notification permissions
+            if ('Notification' in window) {
+                Notification.requestPermission();
+            }
+        }
+
+
+// Call the function
+//displayTransactions();
+        async function loadUserRole() {
+            const { data, error } = await supabase
+                .from('users')
+                .select('role')
+                .eq('id', currentUser.id)
+                .single();
+                
+            if (error) {console.error('Error loading user role:', error.message, error.details);
+
+                return;
+            }
+            
+            userRole = data.role;
+            console.log("Role from DB:", userRole);
+            return userRole;
+
+
+        }
+
+        // Settings management
+        async function loadUserSettings() {
+            if (!currentUser) return;
+            
+            const { data, error } = await supabase
+                .from('system_settings')
+                .select('*')
+                .eq('user_id', currentUser.id)
+                .single();
+                
+            if (error) {
+                console.error('Error loading settings:', error);
+                // Create default settings if none exist
+                await createDefaultSettings();
+                return;
+                
+            }
+            
+      
+
+        // Authentication functions
+       
+            // Populate form with loaded settings
+            document.getElementById('fraudThreshold').value = data.fraud_threshold;
+            updateThresholdValue(data.fraud_threshold);
+            document.getElementById('mlModel').value = data.ml_model;
+            document.getElementById('emailAlerts').checked = data.email_alerts;
+            document.getElementById('inAppAlerts').checked = data.in_app_alerts;
+            document.getElementById('alertFrequency').value = data.alert_frequency;
+            document.getElementById('dataRetention').value = data.data_retention;
+            document.getElementById('autoArchive').checked = data.auto_archive;
+            
+            if (userRole === 'admin') {
+                document.getElementById('adminAccess').checked = data.admin_access;
+            }
+        }
+          document.addEventListener('DOMContentLoaded', async () => {
+            await initializeAuth();
+            await loadUserSettings();
+        });
+
+        async function createDefaultSettings() {
+            if (!currentUser) return;
+            
+            const { error } = await supabase
+                .from('system_settings')
+                .insert([{
+                    user_id: currentUser.id,
+                    fraud_threshold: 60,
+                    ml_model: 'randomForest',
+                    email_alerts: true,
+                    in_app_alerts: true,
+                    alert_frequency: 'daily',
+                    data_retention: '1year',
+                    auto_archive: true,
+                    admin_access: false
+                }]);
+                
+            if (error) {
+                console.error('Error creating default settings:', error);
+            } else {
+                // Reload settings after creation
+                await loadUserSettings();
+            }
+        }
+
+        async function saveSettings() {
+            if (!currentUser) {
+                alert('Please log in to save settings.');
+                return;
+            }
+            
+            const settings = {
+                fraud_threshold: parseInt(document.getElementById('fraudThreshold').value),
+                ml_model: document.getElementById('mlModel').value,
+                email_alerts: document.getElementById('emailAlerts').checked,
+                in_app_alerts: document.getElementById('inAppAlerts').checked,
+                alert_frequency: document.getElementById('alertFrequency').value,
+                data_retention: document.getElementById('dataRetention').value,
+                auto_archive: document.getElementById('autoArchive').checked
+            };
+            
+            // Only save admin settings if user is admin
+            if (userRole === 'admin') {
+                settings.admin_access = document.getElementById('adminAccess').checked;
+            }
+            
+            const { error } = await supabase
+                .from('system_settings')
+                .update(settings)
+                .eq('user_id', currentUser.id);
+                
+            if (error) {
+                console.error('Error saving settings:', error);
+                alert('Error saving settings. Please try again.');
+                return;
+            }
+            
+            alert('Settings saved successfully!');
+            await createAlert('Settings Updated', 'Your system settings have been updated successfully.');
+        }
+
+        // Alert management
+        async function createAlert(type, message, severity = 'medium') {
+            if (!currentUser) return;
+            
+            const { error } = await supabase
+                .from('alerts')
+                .insert([{
+                    user_id: currentUser.id,
+                    alert_type: type,
+                    message: message,
+                    severity: severity
+                }]);
+                
+            if (error) {
+                console.error('Error creating alert:', error);
+            }
+        }
+
+        async function loadAlerts() {
+            if (!currentUser) return [];
+            
+            const { data, error } = await supabase
+                .from('alerts')
+                .select('*')
+                .eq('user_id', currentUser.id)
+                .eq('is_read', false)
+                .order('created_at', { ascending: false });
+                
+            if (error) {
+                console.error('Error loading alerts:', error);
+                return [];
+            }
+            
+            return data;
+        }
+
+        // Transaction management
+        async function loadTransactions(limit = 100) {
+            const { data, error } = await supabase
+                .from('transactions')
+                .select('*')
+                .order('transaction_date', { ascending: false })
+                .limit(limit);
+                
+            if (error) {
+                console.error('Error loading transactions:', error);
+                return [];
+            }
+            
+            return data;
+        }
+
+        async function flagTransaction(transactionId, reason) {
+            const { error } = await supabase
+                .from('transactions')
+                .update({ 
+                    is_flagged: true,
+                    status: 'flagged'
+                })
+                .eq('id', transactionId);
+                
+            if (error) {
+                console.error('Error flagging transaction:', error);
+                return false;
+            }
+            
+            // Create alert for flagged transaction
+            await createAlert('Transaction Flagged', `Transaction ${transactionId} has been flagged: ${reason}`, 'high');
+            return true;
+        }
+
+        // ML Model management (admin only)
+        async function updateMLModel(modelType, config) {
+            if (userRole !== 'admin') {
+                console.error('Unauthorized: Admin access required');
+                return false;
+            }
+            
+            // Deactivate current model
+            await supabase
+                .from('fraud_models')
+                .update({ is_active: false })
+                .eq('is_active', true);
+            
+            // Create new active model
+            const { error } = await supabase
+                .from('fraud_models')
+                .insert([{
+                    model_name: `${modelType}_${Date.now()}`,
+                    model_type: modelType,
+                    model_config: config,
+                    is_active: true,
+                    trained_at: new Date()
+                }]);
+                
+            if (error) {
+                console.error('Error updating ML model:', error);
+                return false;
+            }
+            
+            return true;
+        }
+
+        // Data archival
+        async function archiveOldTransactions() {
+            if (!currentUser) return;
+            
+            const { data: settings } = await supabase
+                .from('system_settings')
+                .select('data_retention, auto_archive')
+                .eq('user_id', currentUser.id)
+                .single();
+                
+            if (!settings || !settings.auto_archive) return;
+            
+            let cutoffDate;
+            const now = new Date();
+            
+            switch (settings.data_retention) {
+                case '3months':
+                    cutoffDate = new Date(now.setMonth(now.getMonth() - 3));
+                    break;
+                case '6months':
+                    cutoffDate = new Date(now.setMonth(now.getMonth() - 6));
+                    break;
+                case '1year':
+                    cutoffDate = new Date(now.setFullYear(now.getFullYear() - 1));
+                    break;
+                case '3years':
+                    cutoffDate = new Date(now.setFullYear(now.getFullYear() - 3));
+                    break;
+                case '5years':
+                    cutoffDate = new Date(now.setFullYear(now.getFullYear() - 5));
+                    break;
+                default:
+                    return; // indefinite storage
+            }
+            
+            const { error } = await supabase
+                .from('transactions')
+                .update({ archived_at: new Date() })
+                .lt('transaction_date', cutoffDate.toISOString())
+                .is('archived_at', null);
+                
+            if (error) {
+                console.error('Error archiving transactions:', error);
+            }
+        }
+
+        // Real-time subscriptions
+        function setupRealtimeSubscriptions() {
+            if (!currentUser) return;
+            
+            // Subscribe to alerts
+            supabase
+                .channel('alerts')
+                .on('postgres_changes', 
+                    { 
+                        event: 'INSERT', 
+                        schema: 'public', 
+                        table: 'alerts',
+                        filter: `user_id=eq.${currentUser.id}`
+                    }, 
+                    (payload) => {
+                        showNotification(payload.new.message, payload.new.severity);
+                    }
+                )
+                .subscribe();
+                
+            // Subscribe to new transactions
+            supabase
+                .channel('transactions')
+                .on('postgres_changes', 
+                    { 
+                        event: 'INSERT', 
+                        schema: 'public', 
+                        table: 'transactions'
+                    }, 
+                    (payload) => {
+                        if (payload.new.fraud_score > getCurrentFraudThreshold()) {
+                            createAlert('High Risk Transaction', 
+                                `Transaction ${payload.new.transaction_id} has high fraud score: ${payload.new.fraud_score}`,
+                                'high');
+                        }
+                    }
+                )
+                .subscribe();
+        }
+
+        function showNotification(message, severity) {
+            // Show browser notification if enabled
+            if (Notification.permission === 'granted') {
+                new Notification('MomoWatch Alert', {
+                    body: message,
+                    icon: '/favicon.ico'
+                });
+            }
+            
+            // Show in-app notification (you can customize this)
+            console.log(`[${severity.toUpperCase()}] ${message}`);
+            
+            // You could also show a toast notification here
+            // Example: showToast(message, severity);
+        }
+
+        function getCurrentFraudThreshold() {
+            const thresholdElement = document.getElementById('fraudThreshold');
+            return thresholdElement ? parseInt(thresholdElement.value) : 60;
+        }
+
+        // Utility functions
+        function updateThresholdValue(value) {
+            document.getElementById('thresholdValue').textContent = value;
+        }
+
+        function displayUserRole(role) {
+            const userRoleElement = document.getElementById('userRole');
+            if (userRoleElement) {
+                userRoleElement.textContent = role.charAt(0).toUpperCase() + role.slice(1);
+            }
+        }
+
+        function toggleAccessControlCard(role) {
+            const accessControlCard = document.getElementById('accessControlCard');
+            if (accessControlCard) {
+                accessControlCard.style.display = role === 'admin' ? 'block' : 'none';
+            }
+        }
+
+        // Sign out function
+        async function signOut() {
+            const { error } = await supabase.auth.signOut();
+            if (error) {
+                console.error('Error signing out:', error);
+            } else {
+                window.location.href = '/login.html';
+            }
+        }
+
+        // Add sign out button functionality if it exists
+        document.addEventListener('DOMContentLoaded', () => {
+            const signOutBtn = document.getElementById('signOutBtn');
+            if (signOutBtn) {
+                signOutBtn.addEventListener('click', signOut);
+            }
+        });
+    </script>
+</body>
+</html>

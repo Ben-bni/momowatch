@@ -1,0 +1,812 @@
+[
+  {
+    "id": "TXN0001",
+    "timestamp": "2025-09-06T16:45:27.444031Z",
+    "sender": "0241754286",
+    "receiver": "0246321343",
+    "amount": 5000,
+    "transactionType": "payment",
+    "location": "Tema",
+    "riskScore": 90,
+    "details": {
+      "device": "iOS",
+      "network": "Vodafone",
+      "note": "School fees"
+    }
+  },
+  {
+    "id": "TXN0002",
+    "timestamp": "2025-09-06T16:45:28.444031Z",
+    "sender": "0241947903",
+    "receiver": "0245936272",
+    "amount": 2000,
+    "transactionType": "transfer",
+    "location": "Cape Coast",
+    "riskScore": 84,
+    "details": {
+      "device": "Android",
+      "network": "MTN",
+      "note": "Groceries"
+    }
+  },
+  {
+    "id": "TXN0003",
+    "timestamp": "2025-09-06T16:45:29.444031Z",
+    "sender": "0241814632",
+    "receiver": "0243614924",
+    "amount": 5000,
+    "transactionType": "transfer",
+    "location": "Takoradi",
+    "riskScore": 91,
+    "details": {
+      "device": "Android",
+      "network": "MTN",
+      "note": "School fees"
+    }
+  },
+  {
+    "id": "TXN0004",
+    "timestamp": "2025-09-06T16:45:30.444031Z",
+    "sender": "0249998838",
+    "receiver": "0247633257",
+    "amount": 1000,
+    "transactionType": "transfer",
+    "location": "Kumasi",
+    "riskScore": 79,
+    "details": {
+      "device": "iOS",
+      "network": "Vodafone",
+      "note": "Rent"
+    }
+  },
+  {
+    "id": "TXN0005",
+    "timestamp": "2025-09-06T16:45:31.444031Z",
+    "sender": "0248874066",
+    "receiver": "0248209115",
+    "amount": 300,
+    "transactionType": "transfer",
+    "location": "Takoradi",
+    "riskScore": 15,
+    "details": {
+      "device": "iOS",
+      "network": "AirtelTigo",
+      "note": "Groceries"
+    }
+  },
+  {
+    "id": "TXN0006",
+    "timestamp": "2025-09-06T16:45:32.444031Z",
+    "sender": "0248211698",
+    "receiver": "0246482813",
+    "amount": 500,
+    "transactionType": "payment",
+    "location": "Kumasi",
+    "riskScore": 20,
+    "details": {
+      "device": "Android",
+      "network": "AirtelTigo",
+      "note": "Groceries"
+    }
+  },
+  {
+    "id": "TXN0007",
+    "timestamp": "2025-09-06T16:45:33.444031Z",
+    "sender": "0242838847",
+    "receiver": "0243512773",
+    "amount": 5000,
+    "transactionType": "payment",
+    "location": "Tamale",
+    "riskScore": 76,
+    "details": {
+      "device": "iOS",
+      "network": "AirtelTigo",
+      "note": "Emergency"
+    }
+  },
+  {
+    "id": "TXN0008",
+    "timestamp": "2025-09-06T16:45:34.444031Z",
+    "sender": "0247895489",
+    "receiver": "0246266665",
+    "amount": 50,
+    "transactionType": "payment",
+    "location": "Tamale",
+    "riskScore": 9,
+    "details": {
+      "device": "Android",
+      "network": "AirtelTigo",
+      "note": "Rent"
+    }
+  },
+  {
+    "id": "TXN0009",
+    "timestamp": "2025-09-06T16:45:35.444031Z",
+    "sender": "0247320498",
+    "receiver": "0246845988",
+    "amount": 300,
+    "transactionType": "payment",
+    "location": "Kumasi",
+    "riskScore": 17,
+    "details": {
+      "device": "iOS",
+      "network": "AirtelTigo",
+      "note": "Utilities"
+    }
+  },
+  {
+    "id": "TXN0010",
+    "timestamp": "2025-09-06T16:45:36.444031Z",
+    "sender": "0241257241",
+    "receiver": "0247448012",
+    "amount": 2000,
+    "transactionType": "payment",
+    "location": "Takoradi",
+    "riskScore": 94,
+    "details": {
+      "device": "Android",
+      "network": "Vodafone",
+      "note": "School fees"
+    }
+  },
+  {
+    "id": "TXN0011",
+    "timestamp": "2025-09-06T16:45:37.444031Z",
+    "sender": "0241730015",
+    "receiver": "0247910671",
+    "amount": 50,
+    "transactionType": "transfer",
+    "location": "Takoradi",
+    "riskScore": 11,
+    "details": {
+      "device": "Android",
+      "network": "MTN",
+      "note": "High value transfer"
+    }
+  },
+  {
+    "id": "TXN0012",
+    "timestamp": "2025-09-06T16:45:38.444031Z",
+    "sender": "0246123347",
+    "receiver": "0241501698",
+    "amount": 50,
+    "transactionType": "transfer",
+    "location": "Tema",
+    "riskScore": 10,
+    "details": {
+      "device": "iOS",
+      "network": "AirtelTigo",
+      "note": "School fees"
+    }
+  },
+  {
+    "id": "TXN0013",
+    "timestamp": "2025-09-06T16:45:39.444031Z",
+    "sender": "0245709083",
+    "receiver": "0245189658",
+    "amount": 100,
+    "transactionType": "transfer",
+    "location": "Cape Coast",
+    "riskScore": 19,
+    "details": {
+      "device": "Android",
+      "network": "MTN",
+      "note": "Rent"
+    }
+  },
+  {
+    "id": "TXN0014",
+    "timestamp": "2025-09-06T16:45:40.444031Z",
+    "sender": "0248940399",
+    "receiver": "0241542058",
+    "amount": 50,
+    "transactionType": "transfer",
+    "location": "Cape Coast",
+    "riskScore": 15,
+    "details": {
+      "device": "iOS",
+      "network": "Vodafone",
+      "note": "Utilities"
+    }
+  },
+  {
+    "id": "TXN0015",
+    "timestamp": "2025-09-06T16:45:41.444031Z",
+    "sender": "0247737823",
+    "receiver": "0246841946",
+    "amount": 150,
+    "transactionType": "transfer",
+    "location": "Cape Coast",
+    "riskScore": 93,
+    "details": {
+      "device": "Android",
+      "network": "Vodafone",
+      "note": "Utilities"
+    }
+  },
+  {
+    "id": "TXN0016",
+    "timestamp": "2025-09-06T16:45:42.444031Z",
+    "sender": "0249058137",
+    "receiver": "0248036773",
+    "amount": 300,
+    "transactionType": "transfer",
+    "location": "Cape Coast",
+    "riskScore": 17,
+    "details": {
+      "device": "Android",
+      "network": "Vodafone",
+      "note": "Rent"
+    }
+  },
+  {
+    "id": "TXN0017",
+    "timestamp": "2025-09-06T16:45:43.444031Z",
+    "sender": "0241432955",
+    "receiver": "0247719115",
+    "amount": 150,
+    "transactionType": "transfer",
+    "location": "Takoradi",
+    "riskScore": 16,
+    "details": {
+      "device": "Android",
+      "network": "MTN",
+      "note": "Groceries"
+    }
+  },
+  {
+    "id": "TXN0018",
+    "timestamp": "2025-09-06T16:45:44.444031Z",
+    "sender": "0245679077",
+    "receiver": "0244174754",
+    "amount": 5000,
+    "transactionType": "payment",
+    "location": "Accra",
+    "riskScore": 71,
+    "details": {
+      "device": "iOS",
+      "network": "AirtelTigo",
+      "note": "Rent"
+    }
+  },
+  {
+    "id": "TXN0019",
+    "timestamp": "2025-09-06T16:45:45.444031Z",
+    "sender": "0246866468",
+    "receiver": "0243636284",
+    "amount": 2000,
+    "transactionType": "payment",
+    "location": "Kumasi",
+    "riskScore": 96,
+    "details": {
+      "device": "iOS",
+      "network": "Vodafone",
+      "note": "Emergency"
+    }
+  },
+  {
+    "id": "TXN0020",
+    "timestamp": "2025-09-06T16:45:46.444031Z",
+    "sender": "0242404843",
+    "receiver": "0242206966",
+    "amount": 100,
+    "transactionType": "payment",
+    "location": "Kumasi",
+    "riskScore": 13,
+    "details": {
+      "device": "Android",
+      "network": "Vodafone",
+      "note": "School fees"
+    }
+  },
+  {
+    "id": "TXN0021",
+    "timestamp": "2025-09-06T16:45:47.444031Z",
+    "sender": "0247939820",
+    "receiver": "0247644174",
+    "amount": 300,
+    "transactionType": "payment",
+    "location": "Tamale",
+    "riskScore": 15,
+    "details": {
+      "device": "Android",
+      "network": "Vodafone",
+      "note": "Emergency"
+    }
+  },
+  {
+    "id": "TXN0022",
+    "timestamp": "2025-09-06T16:45:48.444031Z",
+    "sender": "0249792505",
+    "receiver": "0249254411",
+    "amount": 500,
+    "transactionType": "transfer",
+    "location": "Takoradi",
+    "riskScore": 14,
+    "details": {
+      "device": "Android",
+      "network": "MTN",
+      "note": "High value transfer"
+    }
+  },
+  {
+    "id": "TXN0023",
+    "timestamp": "2025-09-06T16:45:49.444031Z",
+    "sender": "0242753068",
+    "receiver": "0242267354",
+    "amount": 500,
+    "transactionType": "transfer",
+    "location": "Cape Coast",
+    "riskScore": 14,
+    "details": {
+      "device": "Android",
+      "network": "Vodafone",
+      "note": "High value transfer"
+    }
+  },
+  {
+    "id": "TXN0024",
+    "timestamp": "2025-09-06T16:45:50.444031Z",
+    "sender": "0243154121",
+    "receiver": "0246958779",
+    "amount": 50,
+    "transactionType": "payment",
+    "location": "Takoradi",
+    "riskScore": 20,
+    "details": {
+      "device": "iOS",
+      "network": "Vodafone",
+      "note": "Utilities"
+    }
+  },
+  {
+    "id": "TXN0025",
+    "timestamp": "2025-09-06T16:45:51.444031Z",
+    "sender": "0243650222",
+    "receiver": "0247051469",
+    "amount": 1000,
+    "transactionType": "transfer",
+    "location": "Tamale",
+    "riskScore": 70,
+    "details": {
+      "device": "Android",
+      "network": "AirtelTigo",
+      "note": "Emergency"
+    }
+  },
+  {
+    "id": "TXN0026",
+    "timestamp": "2025-09-06T16:45:52.444031Z",
+    "sender": "0249211525",
+    "receiver": "0241575482",
+    "amount": 1000,
+    "transactionType": "transfer",
+    "location": "Kumasi",
+    "riskScore": 72,
+    "details": {
+      "device": "Android",
+      "network": "AirtelTigo",
+      "note": "Emergency"
+    }
+  },
+  {
+    "id": "TXN0027",
+    "timestamp": "2025-09-06T16:45:53.444031Z",
+    "sender": "0248387789",
+    "receiver": "0247389736",
+    "amount": 50,
+    "transactionType": "payment",
+    "location": "Tema",
+    "riskScore": 12,
+    "details": {
+      "device": "Android",
+      "network": "AirtelTigo",
+      "note": "Groceries"
+    }
+  },
+  {
+    "id": "TXN0028",
+    "timestamp": "2025-09-06T16:45:54.444031Z",
+    "sender": "0243233851",
+    "receiver": "0241725030",
+    "amount": 200,
+    "transactionType": "transfer",
+    "location": "Kumasi",
+    "riskScore": 13,
+    "details": {
+      "device": "iOS",
+      "network": "AirtelTigo",
+      "note": "Groceries"
+    }
+  },
+  {
+    "id": "TXN0029",
+    "timestamp": "2025-09-06T16:45:55.444031Z",
+    "sender": "0249193724",
+    "receiver": "0241793387",
+    "amount": 1000,
+    "transactionType": "payment",
+    "location": "Takoradi",
+    "riskScore": 85,
+    "details": {
+      "device": "iOS",
+      "network": "MTN",
+      "note": "Utilities"
+    }
+  },
+  {
+    "id": "TXN0030",
+    "timestamp": "2025-09-06T16:45:56.444031Z",
+    "sender": "0241445504",
+    "receiver": "0248578649",
+    "amount": 10000,
+    "transactionType": "payment",
+    "location": "Tema",
+    "riskScore": 92,
+    "details": {
+      "device": "iOS",
+      "network": "Vodafone",
+      "note": "Emergency"
+    }
+  },
+  {
+    "id": "TXN0031",
+    "timestamp": "2025-09-06T16:45:57.444031Z",
+    "sender": "0246569169",
+    "receiver": "0249015263",
+    "amount": 5000,
+    "transactionType": "payment",
+    "location": "Accra",
+    "riskScore": 96,
+    "details": {
+      "device": "iOS",
+      "network": "MTN",
+      "note": "School fees"
+    }
+  },
+  {
+    "id": "TXN0032",
+    "timestamp": "2025-09-06T16:45:58.444031Z",
+    "sender": "0243779585",
+    "receiver": "0241154905",
+    "amount": 100,
+    "transactionType": "payment",
+    "location": "Tamale",
+    "riskScore": 20,
+    "details": {
+      "device": "iOS",
+      "network": "Vodafone",
+      "note": "Rent"
+    }
+  },
+  {
+    "id": "TXN0033",
+    "timestamp": "2025-09-06T16:45:59.444031Z",
+    "sender": "0244316286",
+    "receiver": "0245442004",
+    "amount": 200,
+    "transactionType": "transfer",
+    "location": "Accra",
+    "riskScore": 19,
+    "details": {
+      "device": "iOS",
+      "network": "MTN",
+      "note": "High value transfer"
+    }
+  },
+  {
+    "id": "TXN0034",
+    "timestamp": "2025-09-06T16:46:00.444031Z",
+    "sender": "0242423892",
+    "receiver": "0245847289",
+    "amount": 2000,
+    "transactionType": "payment",
+    "location": "Tamale",
+    "riskScore": 88,
+    "details": {
+      "device": "iOS",
+      "network": "Vodafone",
+      "note": "High value transfer"
+    }
+  },
+  {
+    "id": "TXN0035",
+    "timestamp": "2025-09-06T16:46:01.444031Z",
+    "sender": "0245822795",
+    "receiver": "0246809054",
+    "amount": 200,
+    "transactionType": "payment",
+    "location": "Tamale",
+    "riskScore": 19,
+    "details": {
+      "device": "Android",
+      "network": "AirtelTigo",
+      "note": "Rent"
+    }
+  },
+  {
+    "id": "TXN0036",
+    "timestamp": "2025-09-06T16:46:02.444031Z",
+    "sender": "0246119842",
+    "receiver": "0242850073",
+    "amount": 300,
+    "transactionType": "transfer",
+    "location": "Takoradi",
+    "riskScore": 17,
+    "details": {
+      "device": "Android",
+      "network": "MTN",
+      "note": "Utilities"
+    }
+  },
+  {
+    "id": "TXN0037",
+    "timestamp": "2025-09-06T16:46:03.444031Z",
+    "sender": "0245095914",
+    "receiver": "0241259656",
+    "amount": 300,
+    "transactionType": "payment",
+    "location": "Takoradi",
+    "riskScore": 19,
+    "details": {
+      "device": "iOS",
+      "network": "AirtelTigo",
+      "note": "Utilities"
+    }
+  },
+  {
+    "id": "TXN0038",
+    "timestamp": "2025-09-06T16:46:04.444031Z",
+    "sender": "0242498042",
+    "receiver": "0245759468",
+    "amount": 300,
+    "transactionType": "payment",
+    "location": "Tamale",
+    "riskScore": 12,
+    "details": {
+      "device": "iOS",
+      "network": "Vodafone",
+      "note": "Emergency"
+    }
+  },
+  {
+    "id": "TXN0039",
+    "timestamp": "2025-09-06T16:46:05.444031Z",
+    "sender": "0247869134",
+    "receiver": "0245817519",
+    "amount": 2000,
+    "transactionType": "payment",
+    "location": "Tema",
+    "riskScore": 89,
+    "details": {
+      "device": "iOS",
+      "network": "Vodafone",
+      "note": "Emergency"
+    }
+  },
+  {
+    "id": "TXN0040",
+    "timestamp": "2025-09-06T16:46:06.444031Z",
+    "sender": "0248390912",
+    "receiver": "0249136192",
+    "amount": 4000,
+    "transactionType": "transfer",
+    "location": "Cape Coast",
+    "riskScore": 71,
+    "details": {
+      "device": "iOS",
+      "network": "AirtelTigo",
+      "note": "Utilities"
+    }
+  },
+  {
+    "id": "TXN0041",
+    "timestamp": "2025-09-06T16:46:07.444031Z",
+    "sender": "0245385077",
+    "receiver": "0248025675",
+    "amount": 100,
+    "transactionType": "payment",
+    "location": "Accra",
+    "riskScore": 6,
+    "details": {
+      "device": "Android",
+      "network": "Vodafone",
+      "note": "Emergency"
+    }
+  },
+  {
+    "id": "TXN0042",
+    "timestamp": "2025-09-06T16:46:08.444031Z",
+    "sender": "0249907473",
+    "receiver": "0246136199",
+    "amount": 5000,
+    "transactionType": "transfer",
+    "location": "Tema",
+    "riskScore": 99,
+    "details": {
+      "device": "iOS",
+      "network": "AirtelTigo",
+      "note": "Groceries"
+    }
+  },
+  {
+    "id": "TXN0043",
+    "timestamp": "2025-09-06T16:46:09.444031Z",
+    "sender": "0243873555",
+    "receiver": "0249700802",
+    "amount": 500,
+    "transactionType": "payment",
+    "location": "Tamale",
+    "riskScore": 16,
+    "details": {
+      "device": "Android",
+      "network": "MTN",
+      "note": "School fees"
+    }
+  },
+  {
+    "id": "TXN0044",
+    "timestamp": "2025-09-06T16:46:10.444031Z",
+    "sender": "0245184760",
+    "receiver": "0243100590",
+    "amount": 200,
+    "transactionType": "payment",
+    "location": "Cape Coast",
+    "riskScore": 15,
+    "details": {
+      "device": "iOS",
+      "network": "MTN",
+      "note": "Rent"
+    }
+  },
+  {
+    "id": "TXN0045",
+    "timestamp": "2025-09-06T16:46:11.444031Z",
+    "sender": "0245369911",
+    "receiver": "0248107084",
+    "amount": 500,
+    "transactionType": "payment",
+    "location": "Accra",
+    "riskScore": 93,
+    "details": {
+      "device": "iOS",
+      "network": "MTN",
+      "note": "Emergency"
+    }
+  },
+  {
+    "id": "TXN0046",
+    "timestamp": "2025-09-06T16:46:12.444031Z",
+    "sender": "0248188913",
+    "receiver": "0246232437",
+    "amount": 100,
+    "transactionType": "transfer",
+    "location": "Tamale",
+    "riskScore": 19,
+    "details": {
+      "device": "iOS",
+      "network": "MTN",
+      "note": "High value transfer"
+    }
+  },
+  {
+    "id": "TXN0047",
+    "timestamp": "2025-09-06T16:46:13.444031Z",
+    "sender": "0248498898",
+    "receiver": "0249331883",
+    "amount": 300,
+    "transactionType": "payment",
+    "location": "Tema",
+    "riskScore": 18,
+    "details": {
+      "device": "Android",
+      "network": "AirtelTigo",
+      "note": "Utilities"
+    }
+  },
+  {
+    "id": "TXN0048",
+    "timestamp": "2025-09-06T16:46:14.444031Z",
+    "sender": "0247303483",
+    "receiver": "0244206035",
+    "amount": 2000,
+    "transactionType": "payment",
+    "location": "Cape Coast",
+    "riskScore": 81,
+    "details": {
+      "device": "iOS",
+      "network": "AirtelTigo",
+      "note": "School fees"
+    }
+  },
+  {
+    "id": "TXN0049",
+    "timestamp": "2025-09-06T16:46:15.444031Z",
+    "sender": "0248522573",
+    "receiver": "0243835365",
+    "amount": 5000,
+    "transactionType": "transfer",
+    "location": "Tamale",
+    "riskScore": 92,
+    "details": {
+      "device": "iOS",
+      "network": "AirtelTigo",
+      "note": "Emergency"
+    }
+  },
+  {
+    "id": "TXN0050",
+    "timestamp": "2025-09-06T16:46:16.444031Z",
+    "sender": "0248768161",
+    "receiver": "0247569024",
+    "amount": 100,
+    "transactionType": "transfer",
+    "location": "Cape Coast",
+    "riskScore": 18,
+    "details": {
+      "device": "iOS",
+      "network": "MTN",
+      "note": "School fees"
+    }
+  },
+  {
+    "id": "TXN0051",
+    "timestamp": "2025-09-06T16:46:17.444031Z",
+    "sender": "0241887877",
+    "receiver": "0246496463",
+    "amount": 2000,
+    "transactionType": "payment",
+    "location": "Tema",
+    "riskScore": 91,
+    "details": {
+      "device": "iOS",
+      "network": "MTN",
+      "note": "Rent"
+    }
+  },
+  {
+    "id": "TXN0052",
+    "timestamp": "2025-09-06T16:46:18.444031Z",
+    "sender": "0244195450",
+    "receiver": "0247458830",
+    "amount": 200,
+    "transactionType": "payment",
+    "location": "Cape Coast",
+    "riskScore": 10,
+    "details": {
+      "device": "iOS",
+      "network": "MTN",
+      "note": "Groceries"
+    }
+  },
+  {
+    "id": "TXN0053",
+    "timestamp": "2025-09-06T16:46:19.444031Z",
+    "sender": "0247065206",
+    "receiver": "0249250226",
+    "amount": 200,
+    "transactionType": "transfer",
+    "location": "Takoradi",
+    "riskScore": 17,
+    "details": {
+      "device": "Android",
+      "network": "Vodafone",
+      "note": "High value transfer"
+    }
+  },
+  {
+    "id": "TXN0054",
+    "timestamp": "2025-09-06T16:46:20.444031Z",
+    "sender": "0242409517",
+    "receiver": "0243521740",
+    "amount": 50,
+    "transactionType": "payment",
+    "location": "Kumasi",
+    "riskScore": 13,
+    "details": {
+      "device": "Android",
+      "network": "MTN",
+      "note": "School fees"
+    }
+  }
+]
