@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MomoWatch Dashboard - Monitor mobile money fraud detection and analytics in real-time.">
+    <title>MomoWatch | Fraud Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <style>
+        :root {
+            --primary-color: #1a1a2e;
+            --secondary-color: #16213e;
+            --accent-color: #3a5f8a;
+            --highlight-color: #28CC95;
+            --text-color: #f1f1f1;
+            --text-muted: #b8b8b8;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --info-color: #17a2b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            min-height: 100vh;
+        }
+
+        .main-header {
+            background: var(--secondary-color);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .header-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-color), var(--highlight-color));
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 700;
+            box-shadow: 0 3px 15px rgba(40, 204, 149, 0.3);
+        }
+        
+        .header-logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #fff, #e9e9e9);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .main-header nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+
+        .nav-item:hover {
+            color: var(--highlight-color);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-item.active {
+            background: rgba(40, 204, 149, 0.2);
+            color: var(--highlight-color);
+        }
+
+        .nav-item i {
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .dashboard-container {
+            padding: 2rem 0;
+        }
+
+        .page-title {
+            margin-bottom: 2rem;
+        }
+
+        .page-title h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #fff, #e9e9e9);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-title p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: rgba(22, 33, 62, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+        }
+
+        .stat-card.success::before {
+            background: var(--success-color);
+        }
+
+        .stat-card.warning::before {
+            background: var(--warning-color);
+        }
+
+        .stat-card.info::before {
+            background: var(--info-color);
+        }
+
+        .stat-card.danger::before { /* Added for fraud-specific stats */
+            background: var(--danger-color);
+        }
+
+        .stat-card.primary::before {
+            background: var(--highlight-color);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .stat-icon.success {
+            background: rgba(40, 167, 69, 0.2);
+            color: var(--success-color);
+        }
+
+        .stat-icon.warning {
+            background: rgba(255, 193, 7, 0.2);
+            color: var(--warning-color);
+        }
+
+        .stat-icon.info {
+            background: rgba(23, 162, 184, 0.2);
+            color: var(--info-color);
+        }
+
+        .stat-icon.danger { /* Added for fraud-specific stats */
+            background: rgba(220, 53, 69, 0.2);
+            color: var(--danger-color);
+        }
+
+        .stat-icon.primary {
+            background: rgba(40, 204, 149, 0.2);
+            color: var(--highlight-color);
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-change {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .stat-change.positive {
+            color: var(--success-color);
+        }
+
+        .stat-change.negative {
+            color: var(--danger-color);
+        }
+
+        .charts-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .chart-card {
+            background: rgba(22, 33, 62, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .chart-header {
+            margin-bottom: 2rem;
+        }
+
+        .chart-header h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .chart-header p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+
+        .recent-activities { /* Renamed from recent-transactions */
+            background: rgba(22, 33, 62, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .activity-item { /* Renamed from transaction-item */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-info { /* Renamed from transaction-info */
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .activity-avatar { /* Renamed from transaction-avatar */
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .activity-details h4 { /* Renamed from transaction-details */
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .activity-details p { /* Renamed from transaction-details */
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .activity-amount { /* Renamed from transaction-amount */
+            font-weight: 600;
+            text-align: right;
+        }
+
+        .activity-amount .value {
+            display: block;
+            font-size: 1.1rem;
+        }
+
+        .activity-amount .number {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .activity-amount.positive {
+            color: var(--success-color);
+        }
+
+        .activity-amount.negative {
+            color: var(--danger-color);
+        }
+
+        .activity-amount.warning { /* Added for suspicious activities */
+            color: var(--warning-color);
+        }
+
+        .main-footer {
+            background: var(--secondary-color);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .charts-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .main-header nav {
+                flex-wrap: wrap;
+                gap: 1rem;
+                justify-content: center;
+            }
+            
+            .nav-item {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .page-title h1 {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .header-logo-text {
+                font-size: 1.3rem;
+            }
+            
+            .main-header nav {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .stat-card, .chart-card, .recent-activities {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="header-logo">
+                    <div class="header-logo-icon" style="font-size: 1rem;">MW</div>
+                    <span class="header-logo-text">MomoWatch</span>
+                </div>
+                <nav aria-label="Main Navigation">
+                    <a href="#" class="nav-item active">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="livemonitor.html" class="nav-item">
+                        <i class="fas fa-bolt"></i>
+                        <span>Live Monitor</span>
+                    </a>
+                    <a href="manualdataentry.html" class="nav-item">
+                        <i class="fas fa-keyboard"></i> <!-- Changed icon to represent manual input -->
+                        <span>Manual Data Entry</span>
+                    </a>
+                    <a href="transactions.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        <span>Transactions</span>
+                    </a>
+                    <a href="settings.html" class="nav-item">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="dashboard-container">
+        <div class="container">
+            <div class="page-title">
+                <h1>Fraud Detection Dashboard</h1>
+                <p>Monitor suspicious mobile money activities and system performance</p>
+            </div>
+
+            <!-- Fraud Statistics Cards -->
+            <div class="stats-grid">
+                <div class="stat-card success">
+                    <div class="stat-header">
+                        <div class="stat-icon success">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value">GH₵0.00</div>
+                    <div class="stat-label">Total Transaction Volume </div>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>+12.5% from last month</span>
+                    </div>
+                </div>
+
+                <div class="stat-card info">
+                    <div class="stat-header">
+                        <div class="stat-icon info">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Transactions Analyzed </div>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>+8.3% from yesterday</span>
+                    </div>
+                </div>
+
+                <div class="stat-card danger">
+                    <div class="stat-header">
+                        <div class="stat-icon danger">
+                            <i class="fas fa-user-secret"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Fraudulent Transactions Detected </div>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>+4.2% from last week</span>
+                    </div>
+                </div>
+
+                <div class="stat-card warning">
+                    <div class="stat-header">
+                        <div class="stat-icon warning">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value">GH₵0.00</div>
+                    <div class="stat-label">Value of Fraud Prevented </div>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>+15% from yesterday</span>
+                    </div>
+                </div>
+            </div>
+
+            
+            <!-- Recent Suspicious Activities -->
+            <div class="recent-activities">
+                <div class="chart-header">
+                    <h3>Recent Suspicious Activities</h3>
+                    <p>Latest flagged mobile money transactions</p>
+                </div>
+                
+                
+
+                <div class="activity-item">
+                    <div class="activity-info">
+                        <div class="activity-avatar" style="background: var(--danger-color);">PT</div>
+                        <div class="activity-details">
+                            <h4>Pending Transaction</h4>
+                            <p>Sender: Kofi Mensah (+233240001122)</p>
+                        </div>
+                    </div>
+                    <div class="activity-amount warning">
+                        <span class="value">GH₵1,200.00</span>
+                        <span class="number">Recipient: Gift Osei (+233245676453)</span>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-info">
+                        <div class="activity-avatar" style="background: var(--success-color);">BL</div>
+                        <div class="activity-details">
+                            <h4>Transaction Blocked</h4>
+                            <p>Sender: Fraudulent Number (+233209988776)</p>
+                        </div>
+                    </div>
+                    <div class="activity-amount positive">
+                        <span class="value">GH₵0.00</span>
+                        <span class="number">Recipient: Akua Nsiah (+233543322110)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alerts Section removed -->
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 MomoWatch. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+
+    const supabaseUrl = 'https://tnebzzkshcoplwlvaxsl.supabase.co'
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRuZWJ6emtzaGNvcGx3bHZheHNsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM5MTU1NTEsImV4cCI6MjA2OTQ5MTU1MX0.EXXMhPRU_MO1gbCdYrjNywrhThkVqbmpRqL4212_gEw'
+    const supabase = createClient(supabaseUrl, supabaseKey)
+
+    // Function to fetch dashboard stats
+    async function fetchDashboardStats() {
+        try {
+            const { data: allTransactions, error } = await supabase
+                .from('transactions')
+                .select('amount,status,sender,sender_name,recipient,recipient_name,created_at')
+                .order('created_at', { ascending: false }) // latest first
+                .limit(50)
+
+            if (error) throw error
+
+            // --- Stats calculations ---
+            const totalVolume = allTransactions.reduce((sum, t) => sum + parseFloat(t.amount || 0), 0)
+            const totalTransactions = allTransactions.length
+            const blockedValue = allTransactions
+                .filter(t => t.status?.toLowerCase() === 'blocked')
+                .reduce((sum, t) => sum + parseFloat(t.amount || 0), 0)
+
+            // Fraudulent transactions = blocked + pending
+            const fraudulentCount = allTransactions.filter(
+                t => ['blocked', 'pending'].includes(t.status?.toLowerCase())
+            ).length
+
+            // --- Update stat cards ---
+            document.querySelector('.stat-card.success .stat-value').textContent = `GH₵${totalVolume.toLocaleString()}`
+            document.querySelector('.stat-card.info .stat-value').textContent = totalTransactions
+            document.querySelector('.stat-card.warning .stat-value').textContent = `GH₵${blockedValue.toLocaleString()}`
+            document.querySelector('.stat-card.danger .stat-value').textContent = fraudulentCount
+
+            // Render suspicious activities
+            renderSuspiciousActivities(allTransactions)
+
+        } catch (err) {
+            console.error('Error fetching dashboard stats:', err)
+        }
+    }
+
+    function renderSuspiciousActivities(transactions) {
+    const container = document.querySelector('.recent-activities')
+
+    // Clear old items
+    container.querySelectorAll('.activity-item').forEach(el => el.remove())
+
+    // Filter: blocked or pending (case-insensitive / partial match), sort newest first, take top 2
+    const suspicious = transactions
+        .filter(t => {
+            const s = (t.status || '').toLowerCase()
+            return s.includes('blocked') || s.includes('pending')
+        })
+        .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+        .slice(0, 2)
+
+    if (suspicious.length === 0) {
+        const emptyMsg = document.createElement('p')
+        emptyMsg.textContent = "No suspicious activity found"
+        emptyMsg.style.color = "gray"
+        container.appendChild(emptyMsg)
+        return
+    }
+
+    suspicious.forEach(t => {
+        const item = document.createElement('div')
+        item.classList.add('activity-item')
+
+        const avatarText = (t.status || 'NA').slice(0, 2).toUpperCase()
+
+        item.innerHTML = `
+            <div class="activity-info">
+                <div class="activity-avatar" style="background: ${
+                    (t.status || '').toLowerCase().includes('blocked')
+                        ? 'var(--success-color)'
+                        : 'var(--warning-color)'
+                };">${avatarText}</div>
+                <div class="activity-details">
+                    <h4>${capitalizeFirstLetter(t.status)} Transaction</h4>
+                    <p>Sender: ${t.sender_name || 'Unknown'} (${t.sender || ''})</p>
+                </div>
+            </div>
+            <div class="activity-amount ${
+                (t.status || '').toLowerCase().includes('blocked') ? 'positive' : 'warning'
+            }">
+                <span class="value">GH₵${parseFloat(t.amount || 0).toLocaleString()}</span>
+                <span class="number">Recipient: ${t.recipient_name || 'Unknown'} (${t.recipient || ''})</span>
+            </div>
+        `
+        container.appendChild(item)
+    })
+}
+
+
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1)
+    }
+
+    // Call function on page load
+    fetchDashboardStats()
+</script>
+</body>
+</html>
